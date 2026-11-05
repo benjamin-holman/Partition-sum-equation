@@ -65,5 +65,20 @@ p(z) < 2p(z-1)
 so we cannot use the trivial bound $p(z) > 2p(z-1)$ to show there are finitely many solutions.
 
 
+## Search method
 
+The search is in [`Partition_Search.ipynb`](Partition_Search.ipynb).
+
+1. **Computing $p(n)$.** All values $p(0), \dots, p(N)$ are computed exactly using the pentagonal number theorem recurrence.
+2. **Reverse lookup.** A dictionary maps each value $p(n)$ back to $n$, so checking whether $p(z) - p(x)$ is a partition number takes one lookup.
+3. **Narrowing the search.** For each $z$, we only need to check $x$ where $x$ satisfies:
+
+$$p(z) - p(z-1) \le p(x) \le \tfrac{1}{2}p(z)$$
+
+- The upper bound comes from assuming $x \le y$.
+- The lower bound holds because if $p(x) < p(z) - p(z-1)$, then $p(z-1) < p(z) - p(x) < p(z)$, which lies strictly between two consecutive partition numbers and so cannot equal $p(y)$.
+
+Since $p$ is increasing, both bounds are found by binary search.
+
+Searching up to $N = 100{,}000$ takes about 20 seconds and finds only the seven solutions above.
 
