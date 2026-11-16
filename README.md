@@ -120,4 +120,4 @@ We get
 $$p(n) - p(n-1) \approx \frac{\pi}{\sqrt{6}n}p(n)$$
 
 Hence, with all our assumptions we get that the probability of any integer being a partition number of a certain size is 
-$$\frac{\sqrt{6}n*p(n)}{\pi}$$
+$$\frac{\sqrt{6}n}{p(n)\pi}$$
