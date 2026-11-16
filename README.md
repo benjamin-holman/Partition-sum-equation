@@ -82,16 +82,28 @@ Since $p$ is increasing, both bounds are found by binary search.
 
 Searching up to $N = 100{,}000$ takes about 20 seconds and finds only the seven solutions above.
 
-## Heuristic Proof 
+## Heuristic argument
 
-For this we assume that $p(z) - p(x)$ as a uniform random integer of its size and then calculate the probability that this equals some $p(y)$.
+We model $p(z) - p(x)$ as a uniformly random integer of its size, and calculate the probability that it equals some $p(y)$.
 
-To do this we calculate the gap $p(n)$ and $p(n-1)$.
+To do this we estimate the gap between $p(n)$ and $p(n-1)$.
 
-We start by using the mean value theorem. $f'(\xi) = f(n) - f(n-1)$ where $\xi \in (n-1, n)$
-For this we take $f(n) = \log{p(n)} = \frac{\pi}{\sqrt{\frac{2*n}{3}}} - \log{4*\sqrt(3)*n
+By the Hardy–Ramanujan formula,
 
-differentiating gives
+$$\log p(n) \approx f(n) := \pi\sqrt{\frac{2n}{3}} - \log\left(4\sqrt{3}\,n\right).$$
 
+Since $f$ is defined for all real $n$, the mean value theorem gives
 
+$$f(n) - f(n-1) = f'(\xi) \quad \text{for some } \xi \in (n-1, n).$$
 
+Differentiating gives
+
+$$f'(n) = \frac{\pi}{\sqrt{6n}} - \frac{1}{n}$$
+
+and differentiating again gives
+
+$$f''(n) = -\frac{\pi}{2\sqrt{6}\,n^{3/2}} + \frac{1}{n^2}$$
+
+Since $f''(n) = O(n^{-3/2})$, $f'(\xi) = f'(n) + O(n^{-3/2})$. The $\frac{1}{n}$ term is also smaller than $\frac{\pi}{\sqrt{6n}}$, so
+
+$$\log p(n) - \log p(n-1) \approx \frac{\pi}{\sqrt{6n}}$$
