@@ -86,7 +86,7 @@ Searching up to $N = 100{,}000$ takes about 20 seconds and finds only the seven 
 
 We model $p(z) - p(x)$ as a uniformly random integer of its size, and calculate the probability that it equals some $p(y)$.
 
-To do this we estimate the gap between $p(n)$ and $p(n-1)$.
+To do this we estimate the gap between $p(n)$ and $p(n-1)$ for large n.
 
 By the Hardy–Ramanujan formula,
 
@@ -107,3 +107,17 @@ $$f''(n) = -\frac{\pi}{2\sqrt{6}n^{3/2}} + \frac{1}{n^2}$$
 Since $f''(n) = O(n^{-3/2})$, $f'(\xi) = f'(n) + O(n^{-3/2})$. The $\frac{1}{n}$ term is also smaller than $\frac{\pi}{\sqrt{6n}}$, so
 
 $$\log p(n) - \log p(n-1) \approx \frac{\pi}{\sqrt{6n}}$$
+
+Using properties of logs we get.
+$$\frac{p(n)}{p(n-1)} \approx e^{\frac{\pi}{\sqrt(6*n)}}
+
+$$p(n) - p(n-1) = p(n)(1-\frac{p(n)}{p(n-1)})$$
+$$p(n) - p(n-1) \approx p(n)(1-e^{\frac{\pi}{\sqrt(6*n)}})$$
+
+Wince $1-e^t \to t$ as $t \to 0$ and $\frac{\pi}{\sqrt(6*n)} \to 0$
+
+We get 
+$$p(n) - p(n-1) \approx \frac{\pi}{\sqrt{6}n}p(n)$$
+
+Hence, with all our assumptions we get that the probability of any integer being a partition number of a certain size is 
+$$\frac{\sqrt{6}n*p(n)}{\pi}$$
