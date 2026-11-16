@@ -82,3 +82,16 @@ Since $p$ is increasing, both bounds are found by binary search.
 
 Searching up to $N = 100{,}000$ takes about 20 seconds and finds only the seven solutions above.
 
+## Heuristic Proof 
+
+For this we assume that $p(z) - p(x)$ as a uniform random integer of its size and then calculate the probability that this equals some $p(y)$.
+
+To do this we calculate the gap $p(n)$ and $p(n-1)$.
+
+We start by using the mean value theorem. $f'(\xi) = f(n) - f(n-1)$ where $\xi \in (n-1, n)$
+For this we take $f(n) = \log{p(n)} = \frac{\pi}{\sqrt{\frac{2*n}{3}}} - \log{4*\sqrt(3)*n
+
+differentiating gives
+
+
+
