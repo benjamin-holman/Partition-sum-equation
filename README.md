@@ -1,7 +1,7 @@
 # Partition-sum-equation
 This project focuses on finding solutions to the equation $p(x) + p(y) = p(z)$ with $1 \le x \le y < z$, where $p(n)$ is the number of partitions of $n$.
 
-*”I came up with this question during my 2nd-year research project on partitions, where I spotted solutions to $p(x) + p(y) = p(z)$ for small $x, y, z$ that seemed to vanish for larger values. This project investigates whether only finitely many solutions exist.”*
+*"I came up with this question during my 2nd-year research project on partitions, where I spotted solutions to $p(x) + p(y) = p(z)$ for small $x, y, z$ that seemed to vanish for larger values. This project investigates whether only finitely many solutions exist."*
 
 ## Solutions found
 
@@ -22,7 +22,7 @@ This project focuses on finding solutions to the equation $p(x) + p(y) = p(z)$ w
 p(z) = p(z-1) + p(z-2) - p(z-5) - p(z-7) + p(z-12) + p(z-15) - \cdots
 ```
 
-**Small solutions.** For $z \le 4$ all terms after $p(z-2)$ vanish, so $p(z) = p(z-1) + p(z-2)$ exactly. This gives the solutions $(z-2\, z-1\, z)$ for $z = 2, 3, 4$, which we call *trivial*. (For $z = 2$ this uses $p(0) = p(1) = 1$.)
+**Small solutions.** For $z \le 4$ all terms after $p(z-2)$ vanish, so $p(z) = p(z-1) + p(z-2)$ exactly. This gives the solutions $(z-2, z-1, z)$ for $z = 2, 3, 4$, which we call *trivial*. (For $z = 2$ this uses $p(0) = p(1) = 1$.)
 
 If we group the terms after $p(z-2)$ into pairs,
 
@@ -56,14 +56,11 @@ since each bracket is non-negative.
 p(z) < p(z-1) + p(z-2) \quad \text{for all } z \ge 5.
 ```
 
-For $z \le 4$ every argument in $g_2$ is negative, so $g_2 = 0$ and equality holds, which gives the trivial solutions.
-
 which means
 ```math
 p(z) < 2p(z-1)
 ```
-so we cannot use the trivial bound $p(z) > 2p(z-1)$ to show there are finitely many solutions.
-
+Since $p(z-2) \le p(z-1)$, this gives $p(z) < 2p(z-1)$ for $z \ge 5$. If instead we had $p(z) > 2p(z-1)$, finiteness would follow immediately, since $p(x) + p(y) \le 2p(z-1)$. So this simple approach does not work.
 
 ## Search method
 
@@ -86,7 +83,7 @@ Searching up to $N = 100{,}000$ takes about 20 seconds and finds only the seven 
 
 We model $p(z) - p(x)$ as a uniformly random integer of its size, and calculate the probability that it equals some $p(y)$.
 
-To do this we estimate the gap between $p(n)$ and $p(n-1)$ for large n.
+To do this we estimate the gap between $p(n)$ and $p(n-1)$ for large $n$.
 
 By the Hardy–Ramanujan formula,
 
@@ -108,16 +105,16 @@ Since $f''(n) = O(n^{-3/2})$, $f'(\xi) = f'(n) + O(n^{-3/2})$. The $\frac{1}{n}$
 
 $$\log p(n) - \log p(n-1) \approx \frac{\pi}{\sqrt{6n}}$$
 
-Using properties of logs we get.
-$$\frac{p(n)}{p(n-1)} \approx e^{\frac{\pi}{\sqrt(6*n)}}
+Using properties of logs we get
+$$\frac{p(n)}{p(n-1)} \approx e^{\frac{\pi}{\sqrt(6*n)}}$$
 
-$$p(n) - p(n-1) = p(n)(1-\frac{p(n)}{p(n-1)})$$
-$$p(n) - p(n-1) \approx p(n)(1-e^{\frac{\pi}{\sqrt(6*n)}})$$
+$$p(n) - p(n-1) = p(n)(1-\frac{p(n-1)}{p(n)})$$
+$$p(n) - p(n-1) \approx p(n)(1-e^{-\frac{\pi}{\sqrt(6*n)}})$$
 
-Wince $1-e^t \to t$ as $t \to 0$ and $\frac{\pi}{\sqrt(6*n)} \to 0$
+Since $\frac{1-e^{-t}}{t} \to 1$ as $t \to 0$ 
 
 We get 
-$$p(n) - p(n-1) \approx \frac{\pi}{\sqrt{6}n}p(n)$$
+$$p(n) - p(n-1) \approx \frac{\pi}{\sqrt{6n}}p(n)$$
 
 Hence, with all our assumptions we get that the probability of any integer being a partition number of a certain size is 
-$$\frac{\sqrt{6}n}{p(n)\pi}$$
+$$\frac{\sqrt{6n}}{p(n)\pi}$$
