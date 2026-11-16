@@ -90,7 +90,7 @@ To do this we estimate the gap between $p(n)$ and $p(n-1)$.
 
 By the Hardy–Ramanujan formula,
 
-$$\log p(n) \approx f(n) := \pi\sqrt{\frac{2n}{3}} - \log\left(4\sqrt{3}\,n\right).$$
+$$\log p(n) \approx f(n) := \pi\sqrt{\frac{2n}{3}} - \log\left(4\sqrt{3}\n\right).$$
 
 Since $f$ is defined for all real $n$, the mean value theorem gives
 
@@ -102,7 +102,7 @@ $$f'(n) = \frac{\pi}{\sqrt{6n}} - \frac{1}{n}$$
 
 and differentiating again gives
 
-$$f''(n) = -\frac{\pi}{2\sqrt{6}\,n^{3/2}} + \frac{1}{n^2}$$
+$$f''(n) = -\frac{\pi}{2\sqrt{6}\n^{3/2}} + \frac{1}{n^2}$$
 
 Since $f''(n) = O(n^{-3/2})$, $f'(\xi) = f'(n) + O(n^{-3/2})$. The $\frac{1}{n}$ term is also smaller than $\frac{\pi}{\sqrt{6n}}$, so
 
